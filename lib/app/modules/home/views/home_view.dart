@@ -4,7 +4,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  HomeView({Key? key}) : super(key: key);
+  HomeView({super.key});
   final textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class HomeView extends GetView<HomeController> {
                 padding: const EdgeInsets.all(2.0),
                 child: InkWell(
                   onTap: () {
-                    controller.keyswicher.value = !controller.keyswicher.value;
+                    controller.keySwitcher.value = !controller.keySwitcher.value;
                   },
                   child: Container(
                     height: double.infinity,
@@ -33,7 +33,7 @@ class HomeView extends GetView<HomeController> {
                       children: [
                         Padding(
                             padding: const EdgeInsets.only(right: 16, top: 20),
-                            child: controller.keyswicher.value
+                            child: controller.keySwitcher.value
                                 ? TextField(
                                     controller: textController,
                                     textAlign: TextAlign.end,
@@ -52,7 +52,7 @@ class HomeView extends GetView<HomeController> {
                         Padding(
                           padding: const EdgeInsets.only(right: 16, top: 50),
                           child: Obx(() => AutoSizeText(
-                              controller.reasult.string,
+                              controller.result.string,
                               textAlign: TextAlign.end,
                               style: const TextStyle(fontSize: 40),
                               minFontSize: 18,
@@ -68,7 +68,7 @@ class HomeView extends GetView<HomeController> {
                 flex: 2,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: controller.keyswicher.value
+                  child: controller.keySwitcher.value
                       ? Container()
                       : Obx(() => GridView.builder(
                           gridDelegate:
@@ -80,10 +80,10 @@ class HomeView extends GetView<HomeController> {
                           itemBuilder: (BuildContext ctx, index) {
                             return InkWell(
                               onLongPress: () {
-                                controller.swich(index);
+                                controller.acSwitch(index);
                               },
                               onTap: () {
-                                controller.addinput(index);
+                                controller.addInput(index);
                               },
                               child: Container(
                                 alignment: Alignment.center,
@@ -98,11 +98,11 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ),
                             );
-                          })),
-                ))
+                          },),),
+                ),)
           ],
         ),
-      )),
+      ),),
     );
   }
 }

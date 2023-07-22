@@ -1,16 +1,11 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 
-import 'package:get/get.dart';
+import 'app/app.dart';
 
-import 'app/routes/app_pages.dart';
-
-void main() {
-  runApp(
-    GetMaterialApp(
-      theme: ThemeData.dark(),
-      title: "Application",
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
-    ),
-  );
-}
+void main() => runApp(
+  DevicePreview(
+    enabled: true,
+    builder: (context) => const App(), // Wrap your app
+  ),
+);

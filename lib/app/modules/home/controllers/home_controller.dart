@@ -5,10 +5,10 @@ import 'package:math_parser/math_parser.dart';
 
 class HomeController extends GetxController {
   //TODO: Implement HomeController
-bool swicher=false;
-final keyswicher=false.obs;
+bool switcher=false;
+final keySwitcher=false.obs;
   final input = "".obs;
-  final reasult = "".obs;
+  final result = "".obs;
   final listOfButton=[].obs;
   
   final listOfButtonNormal = [
@@ -56,18 +56,19 @@ final keyswicher=false.obs;
     "C",
     "+"
   ];
-  addinput(index) {
+  addInput(index) {
     if (listOfButton[index].toString() == "AC") {
       input.value = "";
+      result.value='';
     } else if (listOfButton[index].toString() == "=") {
       try {
-        reasult.value = MathNodeExpression.fromStringExtended(input.value)
+        result.value = MathNodeExpression.fromStringExtended(input.value)
             .calc(
               MathVariableValues.none,
             )
             .toString();
       } catch (e) {
-        reasult.value = e.toString();
+        result.value = e.toString();
       }
     } else if (listOfButton[index].toString() == "C") {
       if (input.value.isNotEmpty) {
@@ -75,26 +76,25 @@ final keyswicher=false.obs;
       }
     } else {
       input.value += listOfButton[index].toString();
-      print(listOfButton[index].toString());
     }
   }
-  swich(index){
+  acSwitch(index){
     if (listOfButton[index].toString() ==
                                   "AC") {
                                 input.value = "";
-                                reasult.value = '';
+                                result.value = '';
                               } else if (listOfButton[index]
                                       .toString() ==
                                   "=") {
-                                if (!swicher) {listOfButton.value =
+                                if (!switcher) {listOfButton.value =
                                     listOfButtonSpecial;
-                                swicher = true;
+                                switcher = true;
                                 }
                                 else {
                                 
                                 listOfButton.value =
                                     listOfButtonNormal;
-                                swicher = false;
+                                switcher = false;
                               }
                                 
                               } 
@@ -106,13 +106,5 @@ final keyswicher=false.obs;
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 }
